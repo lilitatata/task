@@ -25,6 +25,24 @@ module.exports ={
                 test: /\.less$/i,
                 use:["style-loader","css-loader","less-loader"]
             },
+            {
+                test: /\.(png|gif|peg)$/i,
+                type: "asset",
+                generator:{
+                    filename:'images/[hash:6][ext]'
+                }
+            },
+            {
+                test:/\.(eot|svg|ttf|woff|woff2)$/i,
+                type:"asset/resource",
+                generator:{
+                    filename :'fonts/[hash:6][ext]'
+                }
+            },
+            {
+                test: /\.js$/,
+                use:["babel-loader"],
+            }
         ]
     }
 }
