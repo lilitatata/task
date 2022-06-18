@@ -2,6 +2,7 @@ const {
     VueLoaderPlugin
   } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { join }= require('path')
 module.exports ={
     mode:"development",
@@ -15,7 +16,8 @@ module.exports ={
         new HtmlWebpackPlugin({
             template:join(__dirname,'public/index.html')
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin()
     ],
     module:{
         rules:[
@@ -23,7 +25,7 @@ module.exports ={
                 test:/\.css/i,
                 // 解析规则:从后向前
                 // style-loader 放在 css-loader之前
-                use:["style-loader","css-loader"]
+                use:[MiniCssExtractPlugin.loader,"css-loader"]
             },
             {
                 test: /\.less$/i,
